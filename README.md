@@ -17,6 +17,8 @@ In this project, I will demo the use of [Control Bus-Enterprise Integration Patt
 * If you want to stop the "inbound channel adaptor" to listen to the Queue, put a message "@inboundAdaptor.stop()" on "ControlBusQueue". To test it, put a message on to "MyQueue" the message is not published
 * To start the adaptor, again put a message "@inboundAdaptor.start()", the earlier message is consumed.
 
+* to JUnit test this, run "mvn test"
+
 Refer this [blog](http://krishnasblog.com/) for more details on the above flow.
 
 Feel free to modify this code and use it for your need. 
