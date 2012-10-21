@@ -55,5 +55,6 @@ public class ControlBusDemoTest {
 		assertNotNull(adapterOutputChanel.receive(1000));
 		controlChannel
 				.send(new GenericMessage<String>("@inboundAdapter.stop()"));
+		assertNull(adapterOutputChanel.receive(1000));
 	}
 }
