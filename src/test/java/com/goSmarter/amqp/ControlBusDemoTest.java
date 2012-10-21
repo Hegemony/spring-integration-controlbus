@@ -15,6 +15,8 @@
  */
 package com.goSmarter.amqp;
 
+import static org.junit.Assert.*;
+
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,29 +30,30 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * @author Oleg Zhurakousky
- *
+ * 
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:spring-integration-context.xml", 
-	"classpath:spring-integration-test-context.xml"})
+@ContextConfiguration({ "classpath:spring-integration-test-context.xml",
+		"classpath:spring-integration-context.xml" })
 public class ControlBusDemoTest {
-	
+
 	private static Logger logger = Logger.getLogger(ControlBusDemoTest.class);
 
 	@Autowired
 	@Qualifier("control-channel")
 	MessageChannel controlChannel;
-	
+
 	@Autowired
-	@Qualifier("controlbus-managed-p2p-pollable-channel")
+	@Qualifier("controlbus-test-channel")
 	PollableChannel adapterOutputChanel;
-	
+
 	@Test
-	public void demoControlBus(){
-		logger.info("Received before adapter started: " + adapterOutputChanel.receive(1000));
-		controlChannel.send(new GenericMessage<String>("@inboundAdapter.start()"));
-		logger.info("Received before adapter started: " + adapterOutputChanel.receive(1000));
-		controlChannel.send(new GenericMessage<String>("@inboundAdapter.stop()"));
-		logger.info("Received after adapter stopped: " + adapterOutputChanel.receive(1000));
+	public void demoControlBus() {
+		assertNull(adapterOutputChanel.receive(1000));
+		controlChannel.send(new GenericMessage<String>(
+				"@inboundAdapter.start()"));
+		assertNotNull(adapterOutputChanel.receive(1000));
+		controlChannel
+				.send(new GenericMessage<String>("@inboundAdapter.stop()"));
 	}
 }

@@ -9,7 +9,9 @@
 
 	<int:poller default="true" fixed-rate="1000" />
 
-	<int:channel id="controlbus-managed-p2p-pollable-channel">
+	<int:channel id="controlbus-managed-p2p-pollable-channel"/>
+
+	<int:channel id="controlbus-test-channel">
 		<int:queue />
 	</int:channel>
 
@@ -24,4 +26,8 @@
 		auto-startup="false">
 		<int:poller fixed-rate="6000" />
 	</int:inbound-channel-adapter>
+	
+	<int:bridge input-channel="controlbus-managed-p2p-pollable-channel"
+		output-channel="controlbus-test-channel" />
+	
 </beans>
