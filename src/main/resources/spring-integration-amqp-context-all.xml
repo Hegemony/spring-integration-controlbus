@@ -42,13 +42,13 @@
 		<int:poller fixed-rate="6000" />
 	</int-jms:inbound-channel-adapter>
 
-	<int:channel id="controlbus-managed-p2p-pollable-channel" />
-
-	<int:publish-subscribe-channel id="controlbus-managed-pub-sub-channel" />
-
 	<int:channel id="control-channel" />
 
 	<int:control-bus input-channel="control-channel" />
+
+	<int:channel id="controlbus-managed-p2p-pollable-channel" />
+
+	<int:publish-subscribe-channel id="controlbus-managed-pub-sub-channel" />
 
 	<int:bridge input-channel="controlbus-managed-p2p-pollable-channel"
 		output-channel="controlbus-managed-pub-sub-channel" />

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:int="http://www.springframework.org/schema/integration"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -9,14 +8,20 @@
 
 
 	<int:poller default="true" fixed-rate="1000" />
- 
-	<int:channel id="controlbus-managed-p2p-pollable-channel" >
-			<int:queue/>
+
+	<int:channel id="controlbus-managed-p2p-pollable-channel">
+		<int:queue />
 	</int:channel>
 
 	<int:publish-subscribe-channel id="controlbus-managed-pub-sub-channel" />
-	
+
 	<int:channel id="control-channel" />
-	
-	<int:control-bus input-channel="control-channel"/>
+
+	<int:control-bus input-channel="control-channel" />
+
+	<int:inbound-channel-adapter id="inboundAdapter"
+		channel="controlbus-managed-p2p-pollable-channel" expression="'Hello'"
+		auto-startup="false">
+		<int:poller fixed-rate="6000" />
+	</int:inbound-channel-adapter>
 </beans>
