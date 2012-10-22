@@ -19,6 +19,6 @@ In this project, I will demo the use of [Control Bus-Enterprise Integration Patt
 
 * to JUnit test this, run "mvn test"
 
-Refer this [blog](http://krishnasblog.com/) for more details on the above flow.
+Refer this [blog](http://krishnasblog.com/2012/10/21/control-bus-pattern-with-spring-integration-and-jms/) for more details on the above flow.
 
 Feel free to modify this code and use it for your need. 
